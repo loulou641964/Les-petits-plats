@@ -1,0 +1,10 @@
+body {
+    background-color: #f0f0f0; /* gris clair pour le fond */
+    color: #333333; /* texte en gris foncé */
+    font-family: Arial, sans-serif;
+}
+
+/* Couleurs pour les titres */
+h1 {
+    color: #1e90ff; /* bleu vif pour le titre principal */
+}
