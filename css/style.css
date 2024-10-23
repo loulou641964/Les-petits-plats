@@ -22,15 +22,4 @@ header img{
     border-radius: 5px;
     border: none;
 }
-.search-bar{
-    display: flex;  
-    position: relative;
-}
-.search-button{
-    height: 40px;
-    width: 40px;
-    cursor: pointer;
-    position: absolute;
-    right: 10px;
-    top: 15px;
-}
+
