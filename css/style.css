@@ -44,10 +44,11 @@ header div img {
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
+  font-family: "Anton", sans-serif;
   font-size: 28px;
   font-weight: bolder;
   text-align: center;
-  color: Yellow;
+  color: #FFD15B;
   line-height: 1.5r; /* Espace entre les lignes */
   width: 80%; /* Ajuste la largeur pour bien gérer le texte sur plusieurs lignes */
   z-index: 2; /* Met le texte au-dessus de l'image */
