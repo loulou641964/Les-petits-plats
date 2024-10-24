@@ -9,7 +9,7 @@ html {
 
 header {
   position: relative;
-  height: 100vh;
+  height: 85vh;
   width: 100%;
 }
 
@@ -21,7 +21,8 @@ header a {
 }
 
 header a img {
-  width: 150px;
+  width: 207px;
+  height: 25.26px;
 }
 
 header div {
@@ -45,7 +46,7 @@ header div img {
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: "Anton", sans-serif;
-  font-size: 28px;
+  font-size: 35px;
   font-weight: 800;
   text-align: center;
   color: #FFD15B;
@@ -56,7 +57,7 @@ header div img {
 
 .search-bar {
   position: absolute;
-  top: 50%;
+  top: 60%;
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
