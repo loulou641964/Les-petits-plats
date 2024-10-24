@@ -1,8 +1,9 @@
 /* Styles de base pour le body et le header */
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
-  font-family: 'DM Sans', sans-serif;
+  font-family: "DM Sans", sans-serif;
   box-sizing: border-box;
 }
 
@@ -38,6 +39,19 @@ header div img {
   height: 100%;
   object-fit: cover;
 }
+.hero-text {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 28px;
+  font-weight: bolder;
+  text-align: center;
+  color: Yellow;
+  line-height: 1.5r; /* Espace entre les lignes */
+  width: 80%; /* Ajuste la largeur pour bien gérer le texte sur plusieurs lignes */
+  z-index: 2; /* Met le texte au-dessus de l'image */
+}
 
 .search-bar {
   position: absolute;
@@ -45,25 +59,30 @@ header div img {
   left: 50%;
   transform: translate(-50%, -50%);
   display: flex;
-  justify-content: center;
   align-items: center;
   z-index: 2;
-  width: 320px; /* Ajuster selon la largeur de la barre de recherche */
+  width: 954px; /* Largeur précise */
+  height: 45px; /* Hauteur précise */
   position: relative;
+  background-color: #fff;
+  border-radius: 36px; /* Coins arrondis adaptés à la nouvelle hauteur */
+  border: 1px solid #ccc;
 }
 
 .search-input {
-  padding: 10px 40px 10px 10px; /* Ajout de padding à droite pour laisser de la place à l'icône */
+  padding: 0 50px 0 20px; /* Padding pour ajuster l'icône et l'input */
   font-size: 16px;
-  width: 100%;
-  border-radius: 25px;
-  border: 1px solid #ccc;
+  width: calc(
+    100% - 50px
+  ); /* prend toute la largeur sauf pour l'espace de l'icône */
+  height: 100%; /* L'input prend toute la hauteur de la barre */
+  border: none; /* Enlève la bordure de l'input pour utiliser celle du parent */
 }
 
 .search-bar i {
   position: absolute;
-  right: 10px; /* Place l'icône à droite à l'intérieur de la barre de recherche */
-  font-size: 18px;
+  right: 20px; /* Place l'icône à droite à l'intérieur de la barre */
+  font-size: 24px; /* Taille plus grande pour l'icône */
   color: #666;
   cursor: pointer;
 }
