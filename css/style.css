@@ -119,19 +119,19 @@ header div img {
 .appareils-btn-container{
   display: flex;
   position:relative;
-  
+  margin-left: -50px;
   border-radius: 5px; 
 }
 .ustensiles-btn-container{
   display: flex;
   position:relative;
-  
+  margin-left: -50px;
   border-radius: 5px; 
 }
 .filter-item input{
   font-size: 18px;
   padding: 18px 10px;
-  width: 80%;
+  width: 60%;
   text-align: left;
   border: none;
   border-radius: 5px;
@@ -162,7 +162,7 @@ cursor: pointer;
 }
 .fa-solid{
   position: absolute;
-  right: 15px;
+  right: 30px;
   top: 21px;
   padding-right: 20px;
   color: rgb(6, 4, 4);
