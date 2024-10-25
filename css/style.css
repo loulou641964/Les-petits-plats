@@ -93,6 +93,7 @@ header div img {
 .filter-menu {
   display: flex;
   align-items: center;
+  margin-top: 20px;
   
 }
 
