@@ -82,11 +82,102 @@ header div img {
   border-radius: 10px;
 }
 
-.search-bar i {
+.search-icon  {
   position: absolute;
-  right: 20px; /* Place l'icône à droite à l'intérieur de la barre */
-  font-size: 24px; /* Taille plus grande pour l'icône */
-  color: #666;
   cursor: pointer;
+  height: 48px;
+  right:0 /* Place l'icône à droite à l'intérieur de la barre */
+  
  
+}
+.filter-menu {
+  display: flex;
+  align-items: center;
+  
+}
+
+.filter-item {
+  margin-right: 20px; /* Espacement entre chaque filtre */
+}
+
+.filter-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  white-space: nowrap; /* Évite la coupure en plusieurs lignes */
+  right: 50px;
+  position: absolute;
+}
+.ingredients-btn-container{
+  display: flex;
+  position:relative;
+ 
+  border-radius: 5px; 
+}
+.appareils-btn-container{
+  display: flex;
+  position:relative;
+  
+  border-radius: 5px; 
+}
+.ustensiles-btn-container{
+  display: flex;
+  position:relative;
+  
+  border-radius: 5px; 
+}
+.filter-item input{
+  font-size: 18px;
+  padding: 18px 10px;
+  width: 80%;
+  text-align: left;
+  border: none;
+  border-radius: 5px;
+  background-color: #FFFFFF;
+  box-shadow: 0 4px 12px rgb(170, 168, 168);
+  margin-left: 50px;
+}
+
+
+.liste-tag{
+  display: none;
+  grid-template-columns: repeat(3, 1fr);
+  padding-left: 0px;
+  width: auto;
+  margin: 0px;
+  border-radius: 0px 0px 5px 5px;
+  color: white;
+  max-height: 300px;
+  overflow-y: auto;
+}
+.liste-tag li{
+  padding: 5px 8px;
+  list-style-type: none;
+}
+.liste-tag li:hover{
+text-decoration: underline;
+cursor: pointer;
+}
+.fa-solid{
+  position: absolute;
+  right: 15px;
+  top: 21px;
+  padding-right: 20px;
+  color: rgb(6, 4, 4);
+  cursor: pointer;
+}
+
+#hide-ingredients, #hide-Appareils, #hide-ustensiles{
+  display: none;
+}
+#show-ingredients, #show-Appareils, #show-ustensiles{
+  display: block;
+}
+
+
+
+.tag-ingredient p, .tag-appareil p, .tag-ustensile p{
+  color: rgb(17, 13, 13);
+  font-size: 14px;
 }
