@@ -37,64 +37,51 @@
       </p>
       <!--  barre de Recherche -->
       <form class="search-bar">
-        
-       
         <input
           type="text"
           class="search-input"
           placeholder="Rechercher une recette, un ingrédient, ..."
-          
         />
-        <img src="./assets/icon/Loop CTA.svg" alt="Loupe" class="search-icon">
+        <img src="./assets/icon/Loop CTA.svg" alt="Loupe" class="search-icon" />
       </form>
     </header>
     <main>
-      
-        <section class="tag-list">
-            <!-- affichage des tags -->
-            <div class="tag-ingredient"> </div>
-            <div class="tag-appareil"> </div>
-            <div class="tag-ustensile"> </div>
-           
-        </section>
-        <section class="filter-menu">
-         
-            <div class="filter-item" >
-                <div class="ingredients-btn-container">
-                     <input value="ingredients" id="ingredients">  
-                    <i class="fa-solid fa-chevron-up" id="hide-ingredients"></i>
-                    <i class="fa-solid fa-chevron-down" id="show-ingredients"></i>  
-                </div>
-                <ul class="liste-tag" id="ingredients-liste">
-                   
-                </ul>    
-            </div>
-            <div class="filter-item" >
-                <div class="appareils-btn-container">
-                    <input  value="Appareils" id="Appareils"> 
-                    <i class="fa-solid fa-chevron-up" id="hide-Appareils"></i>
-                    <i class="fa-solid fa-chevron-down" id="show-Appareils"></i>
-                </div> 
-                <ul class="liste-tag" id="appareils-liste">
-                </ul>    
-            </div>
-            <div class="filter-item" >
-                <div class="ustensiles-btn-container">
-                    <input value="ustensiles" id="ustensiles">
-                    <i class="fa-solid fa-chevron-up" id="hide-ustensiles"></i>
-                    <i class="fa-solid fa-chevron-down" id="show-ustensiles"></i>
-                    
-                </div>  
-                <ul class="liste-tag" id="ustensiles-liste">
-                </ul>  
-            </div>
-            <p class="filter-text">1500 recettes</p>
-        </section>
-        <section class="recipes-container"> 
-            <!-- affichage des recettes -->
-        </section>
+      <section class="tag-list">
+        <!-- affichage des tags -->
+        <div class="tag-ingredient"></div>
+        <div class="tag-appareil"></div>
+        <div class="tag-ustensile"></div>
+      </section>
+      <section class="filter-menu">
+        <div class="filter-item">
+          <div class="ingredients-btn-container">
+            <input value="ingredients" id="ingredients" />
+            <i class="fa-solid fa-chevron-up" id="hide-ingredients"></i>
+            <i class="fa-solid fa-chevron-down" id="show-ingredients"></i>
+          </div>
+          <ul class="liste-tag" id="ingredients-liste"></ul>
+        </div>
+        <div class="filter-item">
+          <div class="appareils-btn-container">
+            <input value="Appareils" id="Appareils" />
+            <i class="fa-solid fa-chevron-up" id="hide-Appareils"></i>
+            <i class="fa-solid fa-chevron-down" id="show-Appareils"></i>
+          </div>
+          <ul class="liste-tag" id="appareils-liste"></ul>
+        </div>
+        <div class="filter-item">
+          <div class="ustensiles-btn-container">
+            <input value="ustensiles" id="ustensiles" />
+            <i class="fa-solid fa-chevron-up" id="hide-ustensiles"></i>
+            <i class="fa-solid fa-chevron-down" id="show-ustensiles"></i>
+          </div>
+          <ul class="liste-tag" id="ustensiles-liste"></ul>
+        </div>
+        <p class="filter-text">1500 recettes</p>
+      </section>
 
-    </main>
+      <section id="image-gallery" class="gallery-container"></section>
+
       <section class="container-recipes"></section>
     </main>
     <script src="./main.js" type="module"></script>
