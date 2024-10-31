@@ -184,8 +184,36 @@ cursor: pointer;
 }
 main{ 
   background-color: #E5E5E5;
-  width: 3100px;
-  height: 2086px;
   padding-top: 3px;
   
+}
+.container-recipes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Trois colonnes */
+  gap: 20px;
+  padding: 20px;
+  max-width: 1440px; /* Limite la largeur totale */
+  margin: 0 auto; /* Centre la grille */
+}
+
+.container-recipes article {
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.container-recipes img {
+  width: 100%;
+  height: auto;
+  max-height: 300px; /* Limite la hauteur pour une présentation plus uniforme */
+  object-fit: cover;
+}
+
+.container-recipes h3 {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  color: #333;
 }
