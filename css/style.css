@@ -217,3 +217,73 @@ main{
   padding: 10px;
   color: #333;
 }
+/* Style général de la carte de recette */
+.recipe-card {
+  width: 380px; /* Largeur de la carte de recette */
+  background-color: #FFFFFF;
+  border-radius: 21px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+  margin: 20px;
+}
+
+/* Image de la recette */
+.recipe-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Contenu de la carte */
+.recipe-content {
+  padding: 20px;
+}
+
+/* Titre de la recette */
+.recipe-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Sous-titre pour "RECETTE" et "INGRÉDIENTS" */
+.recipe-subtitle {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+/* Liste des ingrédients */
+.ingredients-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Style de chaque ligne d'ingrédient */
+.ingredients-list li {
+  display: flex;
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Quantité et unité de l'ingrédient, alignée à gauche */
+.ingredient-quantity {
+  min-width: 80px; /* Ajustez la largeur selon vos besoins */
+  font-weight: bold;
+  text-align: right;
+  margin-right: 10px;
+}
+
+/* Nom de l'ingrédient */
+.ingredient-name {
+  flex: 1; /* Prend l'espace restant */
+}
+
+/* Instructions de la recette */
+.recipe-instructions {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+}

@@ -1,22 +1,31 @@
 function recipeTemplate(recipe) {
-    return `
-      <article class="recipe-card">
-        <img src="./assets/images/${recipe.image}" alt="${recipe.name}">
-        <h3>${recipe.name}</h3>
-        <p><strong>Temps de préparation :</strong> ${recipe.time} min</p>
+  return `
+    <article class="recipe-card">
+      <img src="./assets/images/${recipe.image}" alt="${recipe.name}" class="recipe-image">
+      <div class="recipe-content">
+        <h3 class="recipe-title">${recipe.name}</h3>
         
-        <ul class="ingredients-list">
-          <strong>Ingrédients :</strong>
-          ${recipe.ingredients.map(ingredient => `
-            <li>
-              ${ingredient.ingredient}: ${ingredient.quantity || ''} ${ingredient.unit || ''}
-            </li>`).join('')}
-        </ul>
+        <!-- Section des ingrédients -->
+        <div class="recipe-section">
+          <h4 class="recipe-subtitle">INGRÉDIENTS</h4>
+          <ul class="ingredients-list">
+            ${recipe.ingredients.map(ingredient => `
+              <li>
+                <span class="ingredient-quantity">${ingredient.quantity || ''} ${ingredient.unit || ''}</span>
+                <span class="ingredient-name">${ingredient.ingredient}</span>
+              </li>`).join('')}
+          </ul>
+        </div>
         
-        <p class="instructions"><strong>Instructions :</strong> ${recipe.instructions || 'Instructions non disponibles'}</p>
-      </article>
-    `;
-  }
-  
-  export default recipeTemplate;
-  
+        <!-- Section des instructions -->
+        <div class="recipe-section">
+          <h4 class="recipe-subtitle">RECETTE</h4>
+          <p class="recipe-instructions">${recipe.description || 'Instructions non disponibles'}</p>
+        </div>
+      </div>
+    </article>
+  `;
+}
+export default recipeTemplate;
+
+
