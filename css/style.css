@@ -234,56 +234,60 @@ main{
   object-fit: cover;
 }
 
-/* Contenu de la carte */
-.recipe-content {
-  padding: 20px;
+.recipe-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  max-width: 400px;
+  font-family: "DM Sans", sans-serif;
 }
 
-/* Titre de la recette */
-.recipe-title {
-  font-size: 1.5em;
+.recipe-card h2 {
+  font-size: 24px;
   font-weight: bold;
+  color: #333;
   margin-bottom: 10px;
 }
 
-/* Sous-titre pour "RECETTE" et "INGRÉDIENTS" */
-.recipe-subtitle {
-  font-size: 1.2em;
+.recipe-details h3 {
+  font-size: 18px;
   font-weight: bold;
-  margin: 10px 0 5px;
-}
-
-/* Liste des ingrédients */
-.ingredients-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-/* Style de chaque ligne d'ingrédient */
-.ingredients-list li {
-  display: flex;
-  font-size: 14px;
-  color: #333;
-  margin-bottom: 5px;
-}
-
-/* Quantité et unité de l'ingrédient, alignée à gauche */
-.ingredient-quantity {
-  min-width: 80px; /* Ajustez la largeur selon vos besoins */
-  font-weight: bold;
-  text-align: right;
-  margin-right: 10px;
-}
-
-/* Nom de l'ingrédient */
-.ingredient-name {
-  flex: 1; /* Prend l'espace restant */
-}
-
-/* Instructions de la recette */
-.recipe-instructions {
-  font-size: 14px;
-  line-height: 1.6;
   color: #555;
+  margin-top: 15px;
+  margin-bottom: 8px;
 }
+
+.recipe-details p {
+  font-size: 16px;
+  color: #666;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.ingredients-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
+  gap: 10px; /* Espace entre les éléments */
+  list-style: none;
+  padding: 0;
+}
+
+.ingredients-list li {
+  font-size: 16px;
+  color: #444;
+}
+
+.ingredient-name {
+  font-weight: bold;
+  display: block;
+}
+
+.ingredient-quantity {
+  font-size: 14px;
+  color: #666;
+  display: block;
+  margin-top: -20px;
+}
+
+
