@@ -1,7 +1,10 @@
 function template(recipe) {
   return `
     <article class="recipe-card">
-        <img src="./assets/images/${recipe.image}" alt="${recipe.name}" class="recipe-image">
+        <div class="image-container">
+          <img src="./assets/images/${recipe.image}" alt="${recipe.name}" class="recipe-image">
+          <span class="recipe-timer">${recipe.time} min</span>
+        </div>
         <h2>${recipe.name}</h2>
         <section class="recipe-details">
             <h3>Recette</h3>
@@ -24,4 +27,3 @@ function template(recipe) {
   `;
 }
 export default template;
-
