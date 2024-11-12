@@ -28,5 +28,6 @@ function template(recipe) {
 }
 
 
+
 export default template;
 

@@ -138,6 +138,9 @@ header div img {
   color: rgb(6, 4, 4);
   cursor: pointer;
 }
+.liste-tag {
+  display: none;
+}
 #hide-ingredients, #hide-Appareils, #hide-ustensiles {
   display: none;
 }
