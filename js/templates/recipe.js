@@ -26,4 +26,21 @@ function template(recipe) {
     </article>
   `;
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const tagSearchInputs = document.querySelectorAll(".tag-search-input");
+
+  tagSearchInputs.forEach(input => {
+    input.addEventListener("input", function () {
+      const listType = this.dataset.list;
+      const listItems = document.querySelectorAll(`#${listType}-liste li`);
+      const searchTerm = this.value.toLowerCase();
+
+      listItems.forEach(item => {
+        const text = item.textContent.toLowerCase();
+        item.style.display = text.includes(searchTerm) ? "block" : "none";
+      });
+    });
+  });
+});
+
 export default template;
