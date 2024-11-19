@@ -32,7 +32,7 @@ function getIngredientsFromRecipes(recipes) {
     return ingredientsUnique;
 }
 function fillListWithArray(list, data) {
-    // Vider la liste existante
+    // Vide la liste existante
     list.innerHTML = '';
     
     // Parcourir le tableau de données et créer un élément de liste pour chaque entrée
