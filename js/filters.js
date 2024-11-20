@@ -1,36 +1,37 @@
-function getUstensilsFromRecipes(recipes){
-    let ustensils =[]
-    recipes.forEach(recipe =>{ 
-        
-    ustensils = ustensils.concat(recipe.ustensils)    
-    })
-    const ustensilsUnique  = [...new Set(ustensils)];
-    console.log("Ustensiles récupérés :", ustensilsUnique);
-    return ustensils
-}
-function getAppliancesFromRecipes(recipes) {
+function getUstensilsFromRecipes(recipes) {
+    let ustensils = [];
+    recipes.forEach(recipe => {
+      ustensils = ustensils.concat(recipe.ustensils);
+    });
+    const ustensilsUnique = [...new Set(ustensils)];
+    console.log("Ustensiles récupérés (uniques) :", ustensilsUnique);
+    return ustensilsUnique;
+  }
+  
+  function getAppliancesFromRecipes(recipes) {
     let appliances = [];
     recipes.forEach(recipe => {
-        if (recipe.appliance) {
-            appliances.push(recipe.appliance);
-        }
+      if (recipe.appliance) {
+        appliances.push(recipe.appliance);
+      }
     });
     const appliancesUnique = [...new Set(appliances)];
-    console.log("Appareils récupérés :", appliancesUnique);
+    console.log("Appareils récupérés (uniques) :", appliancesUnique);
     return appliancesUnique;
-}
-
-function getIngredientsFromRecipes(recipes) {
+  }
+  
+  function getIngredientsFromRecipes(recipes) {
     let ingredients = [];
     recipes.forEach(recipe => {
-        recipe.ingredients.forEach(item => {
-            ingredients.push(item.ingredient);
-        });
+      recipe.ingredients.forEach(item => {
+        ingredients.push(item.ingredient);
+      });
     });
     const ingredientsUnique = [...new Set(ingredients)];
-    console.log("Ingrédients récupérés :", ingredientsUnique);
+    console.log("Ingrédients récupérés (uniques) :", ingredientsUnique);
     return ingredientsUnique;
-}
+  }
+  
 function fillListWithArray(list, data) {
     // Vide la liste existante
     list.innerHTML = '';
