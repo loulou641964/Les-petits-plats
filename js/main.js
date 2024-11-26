@@ -1,12 +1,16 @@
-import { getAppliancesFromRecipes, getIngredientsFromRecipes,getUstensilsFromRecipes,fillListWithArray} from "./filters.js";  
+import { getAppliancesFromRecipes, getIngredientsFromRecipes, getUstensilsFromRecipes, fillListWithArray } from "./filters.js";
 import recipes from "./../data/recipes.js";
 import recipeTemplate from "./templates/recipe.js";
 
-// Afficher toutes les recettes
+// Afficher toutes les recettes au chargement
 const container = document.querySelector(".container-recipes");
-recipes.forEach(recipe => {
-    container.innerHTML += recipeTemplate(recipe);
-});
+const displayRecipes = (recipesToDisplay) => {
+    container.innerHTML = ''; // Efface les recettes actuelles
+    recipesToDisplay.forEach(recipe => {
+        container.innerHTML += recipeTemplate(recipe); // Ajoute les recettes filtrées
+    });
+};
+displayRecipes(recipes); // Affiche toutes les recettes initialement
 
 // Récupérer les données des recettes
 const ingredients = getIngredientsFromRecipes(recipes);
@@ -51,11 +55,52 @@ const showUstensilsChevron = document.querySelector("#show-ustensiles");
 const hideUstensilsChevron = document.querySelector("#hide-ustensiles");
 handleChevronToggle(showUstensilsChevron, hideUstensilsChevron, ustensilsListContainer);
 
-// Filtrage dynamique
+// Fonctions pour filtrer les recettes
+const filterRecipesByIngredient = (searchTerm) => {
+    return recipes.filter(recipe =>
+        recipe.ingredients.some(item =>
+            item.ingredient.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+    );
+};
+
+const filterRecipesByAppliance = (searchTerm) => {
+    return recipes.filter(recipe =>
+        recipe.appliance.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+};
+
+const filterRecipesByUstensil = (searchTerm) => {
+    return recipes.filter(recipe =>
+        recipe.ustensils.some(ustensil =>
+            ustensil.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+    );
+};
+
+// Gestion de la recherche dynamique des recettes
+const handleRecipeFiltering = (inputElement, filterFunction) => {
+    inputElement.addEventListener("input", e => {
+        const searchTerm = e.target.value.trim(); // Texte saisi
+        const filteredRecipes = filterFunction(searchTerm); // Filtrer les recettes
+        displayRecipes(filteredRecipes); // Mettre à jour l'affichage
+    });
+};
+
+// Appliquer la recherche dynamique pour chaque filtre
+const ingredientsInput = document.querySelector("#ingredients");
+const appliancesInput = document.querySelector("#Appareils");
+const ustensilsInput = document.querySelector("#ustensiles");
+
+handleRecipeFiltering(ingredientsInput, filterRecipesByIngredient);
+handleRecipeFiltering(appliancesInput, filterRecipesByAppliance);
+handleRecipeFiltering(ustensilsInput, filterRecipesByUstensil);
+
+// Filtrage dynamique pour les listes (ingrédients, appareils, ustensiles)
 const handleDynamicFiltering = (inputElement, listContainer, originalData) => {
     inputElement.addEventListener("input", e => {
         const filterValue = e.target.value.toLowerCase();
-        const filteredData = originalData.filter(item => 
+        const filteredData = originalData.filter(item =>
             item.toLowerCase().includes(filterValue)
         );
         fillListWithArray(listContainer, filteredData);
@@ -63,10 +108,6 @@ const handleDynamicFiltering = (inputElement, listContainer, originalData) => {
 };
 
 // Appliquer le filtrage dynamique pour chaque liste
-const ingredientsInput = document.querySelector("#ingredients");
-const appliancesInput = document.querySelector("#Appareils");
-const ustensilsInput = document.querySelector("#ustensiles");
-
 handleDynamicFiltering(ingredientsInput, ingredientsListContainer, ingredients);
 handleDynamicFiltering(appliancesInput, appliancesListContainer, appliances);
 handleDynamicFiltering(ustensilsInput, ustensilsListContainer, ustensils);
