@@ -34,13 +34,24 @@ function getIngredientsFromRecipes(recipes) {
   return ingredientsUnique;
 }
 
-function fillListWithArray(list, data) {
+function fillListWithArray(list, data,selection) {
   // Vide la liste existante
   list.innerHTML = "";
 
   // Parcourir le tableau de données et créer un élément de liste pour chaque entrée
   data.forEach((item) => {
     const li = document.createElement("li");
+    li.addEventListener("click",e=>{
+      console.log(item,list.id)
+      const span =document.createElement("span")
+      if (list.id ==="ingredients-liste"){
+        span.dataset.type="ingredients"
+        selection.push(item)
+        console.log(selection)
+    }
+    span.textContent = item
+    document.querySelector("#selection-tag").appendChild (span)
+    })
     li.textContent = item;
     list.appendChild(li);
   });

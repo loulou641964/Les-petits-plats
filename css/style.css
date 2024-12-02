@@ -296,3 +296,17 @@ li:hover{
 .filter-item input:hover{ 
   background-color: #FFD15B;
 }
+.tag {
+  display: inline-block;
+  padding: 5px 10px;
+  margin: 5px;
+  background-color: #3498db;
+  color: white;
+  border-radius: 15px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.tag:hover {
+  background-color: #2980b9;
+}

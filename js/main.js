@@ -1,6 +1,7 @@
 import { getAppliancesFromRecipes, getIngredientsFromRecipes, getUstensilsFromRecipes, fillListWithArray } from "./filters.js";
 import recipes from "./../data/recipes.js";
 import recipeTemplate from "./templates/recipe.js";
+var selected_ingredients = []
 
 // Afficher toutes les recettes au chargement
 const container = document.querySelector(".container-recipes");
@@ -23,7 +24,7 @@ const appliancesListContainer = document.querySelector("#appareils-liste");
 const ustensilsListContainer = document.querySelector("#ustensiles-liste");
 
 // Remplir les listes initialement
-fillListWithArray(ingredientsListContainer, ingredients);
+fillListWithArray(ingredientsListContainer, ingredients,selected_ingredients);
 fillListWithArray(appliancesListContainer, appliances);
 fillListWithArray(ustensilsListContainer, ustensils);
 
