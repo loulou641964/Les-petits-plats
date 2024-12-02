@@ -61,9 +61,9 @@ const hideUstensilsChevron = document.querySelector("#hide-ustensiles");
 handleChevronToggle(showUstensilsChevron, hideUstensilsChevron, ustensilsListContainer);
 
 // Gestion des conteneurs pour les tags
-const ingredientTagContainer = document.querySelector(".tag-ingredient");
-const applianceTagContainer = document.querySelector(".tag-appareil");
-const ustensilTagContainer = document.querySelector(".tag-ustensile");
+const ingredientTagContainer = document.querySelector("#ingredients-tags");
+const applianceTagContainer = document.querySelector("#appareils-tags");
+const ustensilTagContainer = document.querySelector("#ustensiles-tags");
 
 // Mise à jour des tags affichés
 const updateTags = () => {
@@ -72,7 +72,7 @@ const updateTags = () => {
     applianceTagContainer.innerHTML = '';
     ustensilTagContainer.innerHTML = '';
 
-    // Ajouter les tags pour chaque catégorie
+    // Ajouter les tags pour les ingrédients
     selectedIngredients.forEach(tag => {
         const span = document.createElement("span");
         span.textContent = tag;
@@ -85,6 +85,7 @@ const updateTags = () => {
         ingredientTagContainer.appendChild(span);
     });
 
+    // Ajouter les tags pour les appareils
     selectedAppliances.forEach(tag => {
         const span = document.createElement("span");
         span.textContent = tag;
@@ -97,6 +98,7 @@ const updateTags = () => {
         applianceTagContainer.appendChild(span);
     });
 
+    // Ajouter les tags pour les ustensiles
     selectedUstensils.forEach(tag => {
         const span = document.createElement("span");
         span.textContent = tag;
