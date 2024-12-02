@@ -40,6 +40,17 @@ fillListWithArray(ingredientsListContainer, ingredients);
 fillListWithArray(appliancesListContainer, appliances);
 fillListWithArray(ustensilsListContainer, ustensils);
 
+// Fonction pour mettre à jour les listes de filtres
+const updateFilterLists = (filteredRecipes) => {
+    const updatedIngredients = getIngredientsFromRecipes(filteredRecipes);
+    const updatedAppliances = getAppliancesFromRecipes(filteredRecipes);
+    const updatedUstensils = getUstensilsFromRecipes(filteredRecipes);
+
+    fillListWithArray(ingredientsListContainer, updatedIngredients);
+    fillListWithArray(appliancesListContainer, updatedAppliances);
+    fillListWithArray(ustensilsListContainer, updatedUstensils);
+};
+
 // Gestion des chevrons pour ouvrir/fermer les menus
 const handleChevronToggle = (showChevron, hideChevron, listContainer) => {
     showChevron.addEventListener("click", () => {
@@ -147,7 +158,9 @@ const filterRecipes = () => {
 
     // Afficher les recettes filtrées
     displayRecipes(filteredRecipes);
-    updateRecipeCount(filteredRecipes.length); // Mise à jour du compteur après filtrage
+    updateRecipeCount(filteredRecipes.length);
+    updateFilterLists(filteredRecipes);
+    return filteredRecipes;
 };
 
 // Gestion des clics sur les éléments de la liste
@@ -158,12 +171,15 @@ const handleSelection = (listContainer, selectedArray, showChevron, hideChevron)
             if (!selectedArray.includes(value)) {
                 selectedArray.push(value);
                 updateTags();
-                filterRecipes();
+                const filteredRecipes = filterRecipes();
                 
                 // Fermer la liste
                 listContainer.style.display = "none";
                 hideChevron.style.display = "none";
                 showChevron.style.display = "inline-block";
+
+                // Mettre à jour les listes de filtres
+                updateFilterLists(filteredRecipes);
             }
         }
     });
