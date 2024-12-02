@@ -7,6 +7,12 @@ const selectedIngredients = [];
 const selectedAppliances = [];
 const selectedUstensils = [];
 
+// Fonction pour mettre à jour le nombre de recettes
+const updateRecipeCount = (count) => {
+    const filterText = document.querySelector(".filter-text");
+    filterText.textContent = `${count} recette${count > 1 ? 's' : ''}`;
+};
+
 // Afficher toutes les recettes
 const container = document.querySelector(".container-recipes");
 const displayRecipes = (recipesToDisplay) => {
@@ -14,8 +20,10 @@ const displayRecipes = (recipesToDisplay) => {
     recipesToDisplay.forEach(recipe => {
         container.innerHTML += recipeTemplate(recipe); // Ajoute les recettes filtrées
     });
+    updateRecipeCount(recipesToDisplay.length); // Mise à jour du compteur
 };
 displayRecipes(recipes); // Affiche toutes les recettes initialement
+updateRecipeCount(recipes.length); // Initialise le compteur
 
 // Récupérer les données des recettes
 const ingredients = getIngredientsFromRecipes(recipes);
@@ -139,6 +147,7 @@ const filterRecipes = () => {
 
     // Afficher les recettes filtrées
     displayRecipes(filteredRecipes);
+    updateRecipeCount(filteredRecipes.length); // Mise à jour du compteur après filtrage
 };
 
 // Gestion des clics sur les éléments de la liste
