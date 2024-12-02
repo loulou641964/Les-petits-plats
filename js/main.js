@@ -142,7 +142,7 @@ const filterRecipes = () => {
 };
 
 // Gestion des clics sur les éléments de la liste
-const handleSelection = (listContainer, selectedArray) => {
+const handleSelection = (listContainer, selectedArray, showChevron, hideChevron) => {
     listContainer.addEventListener("click", e => {
         if (e.target.tagName === "LI") {
             const value = e.target.textContent.trim();
@@ -150,12 +150,17 @@ const handleSelection = (listContainer, selectedArray) => {
                 selectedArray.push(value);
                 updateTags();
                 filterRecipes();
+                
+                // Fermer la liste
+                listContainer.style.display = "none";
+                hideChevron.style.display = "none";
+                showChevron.style.display = "inline-block";
             }
         }
     });
 };
 
 // Appliquer la gestion pour chaque liste
-handleSelection(ingredientsListContainer, selectedIngredients);
-handleSelection(appliancesListContainer, selectedAppliances);
-handleSelection(ustensilsListContainer, selectedUstensils);
+handleSelection(ingredientsListContainer, selectedIngredients, showIngredientsChevron, hideIngredientsChevron);
+handleSelection(appliancesListContainer, selectedAppliances, showAppliancesChevron, hideAppliancesChevron);
+handleSelection(ustensilsListContainer, selectedUstensils, showUstensilsChevron, hideUstensilsChevron);
