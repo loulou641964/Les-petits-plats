@@ -91,44 +91,33 @@ const updateTags = () => {
     applianceTagContainer.innerHTML = '';
     ustensilTagContainer.innerHTML = '';
 
-    // Ajouter les tags pour les ingrédients
-    selectedIngredients.forEach(tag => {
+    // Fonction pour créer un tag avec bouton de fermeture
+    const createTag = (tag, selectedArray, container) => {
         const span = document.createElement("span");
         span.textContent = tag;
         span.classList.add("tag");
-        span.addEventListener("click", () => {
-            selectedIngredients.splice(selectedIngredients.indexOf(tag), 1);
+        
+        const closeButton = document.createElement("button");
+        closeButton.textContent = "X";
+        closeButton.classList.add("close-tag");
+        closeButton.addEventListener("click", () => {
+            selectedArray.splice(selectedArray.indexOf(tag), 1);
             updateTags();
             filterRecipes();
         });
-        ingredientTagContainer.appendChild(span);
-    });
+        
+        span.appendChild(closeButton);
+        container.appendChild(span);
+    };
+
+    // Ajouter les tags pour les ingrédients
+    selectedIngredients.forEach(tag => createTag(tag, selectedIngredients, ingredientTagContainer));
 
     // Ajouter les tags pour les appareils
-    selectedAppliances.forEach(tag => {
-        const span = document.createElement("span");
-        span.textContent = tag;
-        span.classList.add("tag");
-        span.addEventListener("click", () => {
-            selectedAppliances.splice(selectedAppliances.indexOf(tag), 1);
-            updateTags();
-            filterRecipes();
-        });
-        applianceTagContainer.appendChild(span);
-    });
+    selectedAppliances.forEach(tag => createTag(tag, selectedAppliances, applianceTagContainer));
 
     // Ajouter les tags pour les ustensiles
-    selectedUstensils.forEach(tag => {
-        const span = document.createElement("span");
-        span.textContent = tag;
-        span.classList.add("tag");
-        span.addEventListener("click", () => {
-            selectedUstensils.splice(selectedUstensils.indexOf(tag), 1);
-            updateTags();
-            filterRecipes();
-        });
-        ustensilTagContainer.appendChild(span);
-    });
+    selectedUstensils.forEach(tag => createTag(tag, selectedUstensils, ustensilTagContainer));
 };
 
 // Fonction de filtrage global
