@@ -314,4 +314,12 @@ li:hover{
 .tag:hover {
   background-color: #FFD15B;
 }
-
+button  { 
+  content: "\f00d";
+  font-family: "Font Awesome 5 Free";
+  font-weight: 600;
+  font-size: 1.2rem;
+  color: #000;
+  background-color: #FFD15B;
+  border: none;
+}

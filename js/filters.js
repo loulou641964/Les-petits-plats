@@ -45,10 +45,38 @@ function fillListWithArray(list, data) {
     list.appendChild(li);
   });
 }
+const filterRecipes = (recipes,selection) => {
+  const filteredRecipes = recipes.filter(recipe => {
+      // Vérifier que tous les ingrédients sélectionnés sont dans la recette
+      const hasIngredients = selection.selectedIngredients.every(ingredient =>
+          recipe.ingredients.some(item => 
+              item.ingredient.toLowerCase() === ingredient.toLowerCase()
+          )
+      );
+
+      // Vérifier que l'appareil sélectionné correspond
+      const hasAppliances = selection.selectedAppliances.every(appliance =>
+          recipe.appliance.toLowerCase() === appliance.toLowerCase()
+      );
+
+      // Vérifier que tous les ustensiles sélectionnés sont dans la recette
+      const hasUstensils = selection.selectedUstensils.every(ustensil =>
+          recipe.ustensils.some(item =>
+              item.toLowerCase() === ustensil.toLowerCase()
+          )
+      );
+
+      return hasIngredients && hasAppliances && hasUstensils;
+  });
+
+  
+  return filteredRecipes;
+};
 
 export {
   getUstensilsFromRecipes,
   getAppliancesFromRecipes,
   getIngredientsFromRecipes,
   fillListWithArray,
+  filterRecipes,
 };
