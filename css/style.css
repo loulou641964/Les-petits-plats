@@ -263,6 +263,7 @@ main {
   line-height: 1.5;
   margin: 0 20px 15px 20px;
   text-align: justify;
+ 
 }
 
 .ingredients-list {
@@ -333,4 +334,7 @@ button {
 }
 span .tag {
   text-align: left;
+}
+.recipe-details{ 
+  overflow-y: auto;
 }
