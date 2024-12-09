@@ -7,6 +7,26 @@ const selectedIngredients = [];
 const selectedAppliances = [];
 const selectedUstensils = [];
 
+// Nouvelle fonction de recherche principale
+const mainSearch = (searchTerm) => {
+    const lowerSearchTerm = searchTerm.toLowerCase().trim();
+    return recipes.filter(recipe => {
+        // Vérifier si le nom de la recette commence par le terme de recherche
+        const nameMatch = recipe.name.toLowerCase().startsWith(lowerSearchTerm);
+        
+        // Vérifier si la description contient le terme
+        const descriptionMatch = recipe.description.toLowerCase().includes(lowerSearchTerm);
+        
+        // Vérifier si l'un des ingrédients commence par le terme de recherche
+        const ingredientsMatch = recipe.ingredients.some(ingredient =>
+            ingredient.ingredient.toLowerCase().startsWith(lowerSearchTerm)
+        );
+        
+        // Retourner vrai si au moins une des conditions est vraie
+        return nameMatch || descriptionMatch || ingredientsMatch;
+    });
+};
+
 // Fonction pour mettre à jour le nombre de recettes
 const updateRecipeCount = (count) => {
     const filterText = document.querySelector(".filter-text");
@@ -57,6 +77,60 @@ const updateFilterLists = (filteredRecipes) => {
     fillListWithArray(appliancesListContainer, updatedAppliances);
     fillListWithArray(ustensilsListContainer, updatedUstensils);
 };
+
+// Fonction de filtrage global
+const filterRecipes = () => {
+    const searchInput = document.querySelector(".search-input");
+    const searchTerm = searchInput.value.trim();
+
+    let filteredRecipes;
+
+    if (searchTerm.length >= 3) {
+        filteredRecipes = mainSearch(searchTerm);
+    } else {
+        filteredRecipes = recipes; // Afficher toutes les recettes si moins de 3 caractères
+    }
+
+    // Appliquer les filtres supplémentaires (ingrédients, appareils, ustensiles)
+    filteredRecipes = filteredRecipes.filter(recipe => {
+        const hasIngredients = selectedIngredients.every(ingredient =>
+            recipe.ingredients.some(item =>
+                item.ingredient.toLowerCase() === ingredient.toLowerCase()
+            )
+        );
+        
+        const hasAppliances = selectedAppliances.every(appliance =>
+            recipe.appliance.toLowerCase() === appliance.toLowerCase()
+        );
+        
+        const hasUstensils = selectedUstensils.every(ustensil =>
+            recipe.ustensils.some(item =>
+                item.toLowerCase() === ustensil.toLowerCase()
+            )
+        );
+
+        return hasIngredients && hasAppliances && hasUstensils;
+    });
+
+    displayRecipes(filteredRecipes);
+    updateRecipeCount(filteredRecipes.length);
+    updateFilterLists(filteredRecipes);
+};
+
+// Déclenche la recherche au clic sur la loupe
+const searchInput = document.querySelector(".search-input");
+const searchIcon = document.querySelector(".search-icon");
+
+searchIcon.addEventListener("click", () => {
+    filterRecipes();
+});
+
+// Optionnel : Ajouter un écouteur pour la touche "Entrée"
+searchInput.addEventListener("keypress", (event) => {
+    if (event.key === "Enter") {
+        filterRecipes();
+    }
+});
 
 // Gestion des chevrons pour ouvrir/fermer les menus
 const handleChevronToggle = (showChevron, hideChevron, listContainer) => {
@@ -121,33 +195,6 @@ const updateTags = () => {
     selectedUstensils.forEach(tag => createTag(tag, selectedUstensils, ustensilTagContainer));
 };
 
-// Fonction de filtrage global
-const filterRecipes = () => {
-    const filteredRecipes = recipes.filter(recipe => {
-        const hasIngredients = selectedIngredients.every(ingredient =>
-            recipe.ingredients.some(item =>
-                item.ingredient.toLowerCase() === ingredient.toLowerCase()
-            )
-        );
-        
-        const hasAppliances = selectedAppliances.every(appliance =>
-            recipe.appliance.toLowerCase() === appliance.toLowerCase()
-        );
-        
-        const hasUstensils = selectedUstensils.every(ustensil =>
-            recipe.ustensils.some(item =>
-                item.toLowerCase() === ustensil.toLowerCase()
-            )
-        );
-
-        return hasIngredients && hasAppliances && hasUstensils;
-    });
-
-    displayRecipes(filteredRecipes);
-    updateRecipeCount(filteredRecipes.length);
-    updateFilterLists(filteredRecipes);
-};
-
 // Gestion des clics sur les éléments de la liste
 const handleSelection = (listContainer, selectedArray, showChevron, hideChevron) => {
     listContainer.addEventListener("click", e => {
@@ -164,8 +211,6 @@ const handleSelection = (listContainer, selectedArray, showChevron, hideChevron)
         }
     });
 };
-
-
 
 // Appliquer la gestion pour chaque liste
 handleSelection(ingredientsListContainer, selectedIngredients, showIngredientsChevron, hideIngredientsChevron);
