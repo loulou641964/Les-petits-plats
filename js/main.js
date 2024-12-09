@@ -1,4 +1,4 @@
-import { getAppliancesFromRecipes, getIngredientsFromRecipes, getUstensilsFromRecipes, fillListWithArray } from "./filters.js";  
+import { getAppliancesFromRecipes, getIngredientsFromRecipes, getUstensilsFromRecipes, fillListWithArray } from "./filters.js";
 import recipes from "./../data/recipes.js";
 import recipeTemplate from "./templates/recipe.js";
 
@@ -22,13 +22,14 @@ const displayRecipes = (recipesToDisplay) => {
     });
     updateRecipeCount(recipesToDisplay.length); // Mise à jour du compteur
 };
+
 displayRecipes(recipes); // Affiche toutes les recettes initialement
 updateRecipeCount(recipes.length); // Initialise le compteur
 
-// Récupérer les données des recettes
-const ingredients = getIngredientsFromRecipes(recipes);
-const appliances = getAppliancesFromRecipes(recipes);
-const ustensils = getUstensilsFromRecipes(recipes);
+// Récupérer les données des recettes et trier par ordre alphabétique
+const ingredients = getIngredientsFromRecipes(recipes).sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
+const appliances = getAppliancesFromRecipes(recipes).sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
+const ustensils = getUstensilsFromRecipes(recipes).sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
 
 // Récupérer les conteneurs de listes
 const ingredientsListContainer = document.querySelector("#ingredients-liste");
@@ -42,10 +43,16 @@ fillListWithArray(ustensilsListContainer, ustensils);
 
 // Fonction pour mettre à jour les listes de filtres
 const updateFilterLists = (filteredRecipes) => {
-    const updatedIngredients = getIngredientsFromRecipes(filteredRecipes);
-    const updatedAppliances = getAppliancesFromRecipes(filteredRecipes);
-    const updatedUstensils = getUstensilsFromRecipes(filteredRecipes);
-
+    const updatedIngredients = getIngredientsFromRecipes(filteredRecipes)
+        .filter(ingredient => !selectedIngredients.includes(ingredient))
+        .sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
+    const updatedAppliances = getAppliancesFromRecipes(filteredRecipes)
+        .filter(appliance => !selectedAppliances.includes(appliance))
+        .sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
+    const updatedUstensils = getUstensilsFromRecipes(filteredRecipes)
+        .filter(ustensil => !selectedUstensils.includes(ustensil))
+        .sort((a, b) => a.localeCompare(b, 'fr', { sensitivity: 'base' }));
+    
     fillListWithArray(ingredientsListContainer, updatedIngredients);
     fillListWithArray(appliancesListContainer, updatedAppliances);
     fillListWithArray(ustensilsListContainer, updatedUstensils);
@@ -58,7 +65,7 @@ const handleChevronToggle = (showChevron, hideChevron, listContainer) => {
         showChevron.style.display = "none"; // Cache le chevron bas
         hideChevron.style.display = "inline-block"; // Affiche le chevron haut
     });
-
+    
     hideChevron.addEventListener("click", () => {
         listContainer.style.display = "none"; // Cache la liste
         hideChevron.style.display = "none"; // Cache le chevron haut
@@ -86,12 +93,10 @@ const ustensilTagContainer = document.querySelector("#ustensiles-tags");
 
 // Mise à jour des tags affichés
 const updateTags = () => {
-    // Nettoyer les conteneurs avant de les remplir
     ingredientTagContainer.innerHTML = '';
     applianceTagContainer.innerHTML = '';
     ustensilTagContainer.innerHTML = '';
 
-    // Fonction pour créer un tag avec bouton de fermeture
     const createTag = (tag, selectedArray, container) => {
         const span = document.createElement("span");
         span.textContent = tag;
@@ -100,6 +105,7 @@ const updateTags = () => {
         const closeButton = document.createElement("button");
         closeButton.textContent = "X";
         closeButton.classList.add("close-tag");
+        
         closeButton.addEventListener("click", () => {
             selectedArray.splice(selectedArray.indexOf(tag), 1);
             updateTags();
@@ -110,32 +116,24 @@ const updateTags = () => {
         container.appendChild(span);
     };
 
-    // Ajouter les tags pour les ingrédients
     selectedIngredients.forEach(tag => createTag(tag, selectedIngredients, ingredientTagContainer));
-
-    // Ajouter les tags pour les appareils
     selectedAppliances.forEach(tag => createTag(tag, selectedAppliances, applianceTagContainer));
-
-    // Ajouter les tags pour les ustensiles
     selectedUstensils.forEach(tag => createTag(tag, selectedUstensils, ustensilTagContainer));
 };
 
 // Fonction de filtrage global
 const filterRecipes = () => {
     const filteredRecipes = recipes.filter(recipe => {
-        // Vérifier que tous les ingrédients sélectionnés sont dans la recette
         const hasIngredients = selectedIngredients.every(ingredient =>
-            recipe.ingredients.some(item => 
+            recipe.ingredients.some(item =>
                 item.ingredient.toLowerCase() === ingredient.toLowerCase()
             )
         );
-
-        // Vérifier que l'appareil sélectionné correspond
+        
         const hasAppliances = selectedAppliances.every(appliance =>
             recipe.appliance.toLowerCase() === appliance.toLowerCase()
         );
-
-        // Vérifier que tous les ustensiles sélectionnés sont dans la recette
+        
         const hasUstensils = selectedUstensils.every(ustensil =>
             recipe.ustensils.some(item =>
                 item.toLowerCase() === ustensil.toLowerCase()
@@ -145,11 +143,9 @@ const filterRecipes = () => {
         return hasIngredients && hasAppliances && hasUstensils;
     });
 
-    // Afficher les recettes filtrées
     displayRecipes(filteredRecipes);
     updateRecipeCount(filteredRecipes.length);
     updateFilterLists(filteredRecipes);
-    return filteredRecipes;
 };
 
 // Gestion des clics sur les éléments de la liste
@@ -160,19 +156,16 @@ const handleSelection = (listContainer, selectedArray, showChevron, hideChevron)
             if (!selectedArray.includes(value)) {
                 selectedArray.push(value);
                 updateTags();
-                const filteredRecipes = filterRecipes();
-                
-                // Fermer la liste
-                listContainer.style.display = "none";
+                filterRecipes();
+                listContainer.style.display = "none"; // Fermer la liste après sélection
                 hideChevron.style.display = "none";
                 showChevron.style.display = "inline-block";
-
-                // Mettre à jour les listes de filtres
-                updateFilterLists(filteredRecipes);
             }
         }
     });
 };
+
+
 
 // Appliquer la gestion pour chaque liste
 handleSelection(ingredientsListContainer, selectedIngredients, showIngredientsChevron, hideIngredientsChevron);
