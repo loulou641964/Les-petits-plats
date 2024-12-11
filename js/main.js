@@ -91,11 +91,21 @@ const filterRecipes = () => {
 const searchInput = document.querySelector(".search-input");
 const searchIcon = document.querySelector(".search-icon");
 
-searchIcon.addEventListener("click", filterRecipes);
-searchInput.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") filterRecipes();
+// Modification de l'écouteur d'événements pour la recherche
+searchInput.addEventListener("input", (event) => {
+    const searchTerm = event.target.value.trim();
+    if (searchTerm.length >= 3) {
+        filterRecipes();
+    } else if (searchTerm.length === 0) {
+        displayRecipes(recipes);
+        updateRecipeCount(recipes.length);
+        updateFilterLists(recipes);
+    }
 });
 
+searchIcon.addEventListener("click", filterRecipes);
+
+// Reste du code inchangé (gestion des chevrons, sélection des tags, etc.)
 const handleChevronToggle = (showChevron, hideChevron, listContainer) => {
     showChevron.addEventListener("click", () => {
         listContainer.style.display = "block";
@@ -123,7 +133,6 @@ const hideUstensilsChevron = document.querySelector("#hide-ustensiles");
 handleChevronToggle(showUstensilsChevron, hideUstensilsChevron, ustensilsListContainer);
 
 const selectedTagContainer = document.querySelector("#selected-tags");
-
 
 const updateTags = () => {
     selectedTagContainer.innerHTML = '';
