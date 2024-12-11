@@ -122,15 +122,12 @@ const showUstensilsChevron = document.querySelector("#show-ustensiles");
 const hideUstensilsChevron = document.querySelector("#hide-ustensiles");
 handleChevronToggle(showUstensilsChevron, hideUstensilsChevron, ustensilsListContainer);
 
-const ingredientTagContainer = document.querySelector("#ingredients-tags");
-const applianceTagContainer = document.querySelector("#appareils-tags");
-const ustensilTagContainer = document.querySelector("#ustensiles-tags");
+const selectedTagContainer = document.querySelector("#selected-tags");
+
 
 const updateTags = () => {
-    ingredientTagContainer.innerHTML = '';
-    applianceTagContainer.innerHTML = '';
-    ustensilTagContainer.innerHTML = '';
-
+    selectedTagContainer.innerHTML = '';
+    
     const createTag = (tag, selectedArray, container) => {
         const span = document.createElement("span");
         span.textContent = tag;
@@ -150,9 +147,9 @@ const updateTags = () => {
         container.appendChild(span);
     };
 
-    selectedIngredients.forEach(tag => createTag(tag, selectedIngredients, ingredientTagContainer));
-    selectedAppliances.forEach(tag => createTag(tag, selectedAppliances, applianceTagContainer));
-    selectedUstensils.forEach(tag => createTag(tag, selectedUstensils, ustensilTagContainer));
+    selectedIngredients.forEach(tag => createTag(tag, selectedIngredients, selectedTagContainer));
+    selectedAppliances.forEach(tag => createTag(tag, selectedAppliances,selectedTagContainer ));
+    selectedUstensils.forEach(tag => createTag(tag, selectedUstensils, selectedTagContainer));
 };
 
 const handleSelection = (listContainer, selectedArray, showChevron, hideChevron) => {

@@ -89,6 +89,7 @@ header div img {
 
 .filter-menu {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   margin-top: 20px;
   margin-left: 40px;
@@ -302,8 +303,13 @@ li:hover {
   background-color: #ffd15b;
 }
 /* Styles pour les tags */
+.tags-container{ 
+  width:100% ;
+  display: flex;
+  gap:10px;
+}
 .tag {
-  width: 155px;
+  min-width: 155px;
   height: 30px;
   border-radius: 10px;
   padding: 15px;
@@ -314,6 +320,7 @@ li:hover {
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  position:relative;
 }
 
 .tag:hover {
@@ -322,7 +329,7 @@ li:hover {
 button {
   position: absolute;
 
-  left: 60%;
+  right:5px;
   content: "\f00d";
   font-family: "Font Awesome 5 Free";
   font-weight: 600;
