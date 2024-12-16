@@ -5,7 +5,7 @@ function template(recipe) {
           <img src="./assets/images/${recipe.image}" alt="${recipe.name}" class="recipe-image">
           <span class="recipe-timer">${recipe.time} min</span>
         </div>
-        <h3>${recipe.name}</h3>
+        <h2>${recipe.name}</h2>
         <section class="recipe-details">
             <h3>Recette</h3>
             <p>${recipe.description}</p>
