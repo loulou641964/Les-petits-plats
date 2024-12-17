@@ -1,5 +1,8 @@
-// Fonction de recherche principale
-const mainSearch = (term) => {
+// search.js
+
+import recipes from "./../data/recipes.js";
+
+export const mainSearch = (term) => {
     const lowerTerm = term.toLowerCase().trim();
     return recipes.filter(({ name, description, ingredients }) => 
         name.toLowerCase().startsWith(lowerTerm) ||
@@ -8,44 +11,20 @@ const mainSearch = (term) => {
     );
 };
 
-// Gestion de l'entrée dans la barre de recherche
-const searchInput = document.querySelector(".search-input");
-const searchIcon = document.querySelector(".search-icon");
-
-searchIcon.addEventListener("click", filterRecipes);
-searchInput.addEventListener("keypress", (event) => {
-    if (event.key === "Enter") filterRecipes();
-});
-
-// Filtrage des recettes
-const filterRecipes = () => {
+export const initializeSearch = (filterRecipes, displayRecipes, updateRecipeCount, updateFilterLists) => {
     const searchInput = document.querySelector(".search-input");
-    const searchTerm = searchInput.value.trim();
+    const searchIcon = document.querySelector(".search-icon");
 
-    let filteredRecipes = searchTerm.length >= 3 ? mainSearch(searchTerm) : recipes;
-
-    // Filtrage supplémentaire basé sur les tags
-    filteredRecipes = filteredRecipes.filter(recipe => {
-        const hasIngredients = selectedIngredients.every(ingredient =>
-            recipe.ingredients.some(item =>
-                item.ingredient.toLowerCase() === ingredient.toLowerCase()
-            )
-        );
-        
-        const hasAppliances = selectedAppliances.every(appliance =>
-            recipe.appliance.toLowerCase() === appliance.toLowerCase()
-        );
-        
-        const hasUstensils = selectedUstensils.every(ustensil =>
-            recipe.ustensils.some(item =>
-                item.toLowerCase() === ustensil.toLowerCase()
-            )
-        );
-
-        return hasIngredients && hasAppliances && hasUstensils;
+    searchInput.addEventListener("input", (event) => {
+        const searchTerm = event.target.value.trim();
+        if (searchTerm.length >= 3) {
+            filterRecipes();
+        } else if (searchTerm.length === 0) {
+            displayRecipes(recipes);
+            updateRecipeCount(recipes.length);
+            updateFilterLists(recipes);
+        }
     });
 
-    displayRecipes(filteredRecipes);
-    updateRecipeCount(filteredRecipes.length);
-    updateFilterLists(filteredRecipes);
+    searchIcon.addEventListener("click", filterRecipes);
 };

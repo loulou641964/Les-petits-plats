@@ -1,20 +1,13 @@
+// main.js
+
 // Importations nécessaires
 import { getAppliancesFromRecipes, getIngredientsFromRecipes, getUstensilsFromRecipes, fillListWithArray } from "./filters.js";
 import recipes from "./../data/recipes.js";
 import recipeTemplate from "./templates/recipe.js";
+import { mainSearch, initializeSearch } from "./search.js";
 
 // Sélections initialisées
 const selectedIngredients = [], selectedAppliances = [], selectedUstensils = [];
-
-// Fonction de recherche principale
-const mainSearch = (term) => {
-    const lowerTerm = term.toLowerCase().trim();
-    return recipes.filter(({ name, description, ingredients }) => 
-        name.toLowerCase().startsWith(lowerTerm) ||
-        description.toLowerCase().includes(lowerTerm) ||
-        ingredients.some(({ ingredient }) => ingredient.toLowerCase().startsWith(lowerTerm))
-    );
-};
 
 // Mise à jour du compteur
 const updateRecipeCount = (count) => {
@@ -88,24 +81,7 @@ const filterRecipes = () => {
     updateFilterLists(filteredRecipes);
 };
 
-const searchInput = document.querySelector(".search-input");
-const searchIcon = document.querySelector(".search-icon");
-
-// Modification de l'écouteur d'événements pour la recherche
-searchInput.addEventListener("input", (event) => {
-    const searchTerm = event.target.value.trim();
-    if (searchTerm.length >= 3) {
-        filterRecipes();
-    } else if (searchTerm.length === 0) {
-        displayRecipes(recipes);
-        updateRecipeCount(recipes.length);
-        updateFilterLists(recipes);
-    }
-});
-
-searchIcon.addEventListener("click", filterRecipes);
-
-// Reste du code inchangé (gestion des chevrons, sélection des tags, etc.)
+// (gestion des chevrons, sélection des tags, etc.)
 const handleChevronToggle = (showChevron, hideChevron, listContainer) => {
     showChevron.addEventListener("click", () => {
         listContainer.style.display = "block";
@@ -181,5 +157,8 @@ handleSelection(ingredientsListContainer, selectedIngredients, showIngredientsCh
 handleSelection(appliancesListContainer, selectedAppliances, showAppliancesChevron, hideAppliancesChevron);
 handleSelection(ustensilsListContainer, selectedUstensils, showUstensilsChevron, hideUstensilsChevron);
 
-// Initialisation
+// Initialisation de la recherche
+initializeSearch(filterRecipes, displayRecipes, updateRecipeCount, updateFilterLists);
+
+// Initialisation de l'affichage
 displayRecipes(recipes);
