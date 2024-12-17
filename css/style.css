@@ -239,9 +239,10 @@ main {
 }
 
 .recipe-card h2 {
-  
+  letter-spacing: 0.5px;
+  font-size: 17px;
   font-family: "Anton", sans-serif;
-  font-weight: 900;
+  font-weight: 400;
   color: #333;
   margin-bottom: 10px;
   text-align: left;
@@ -345,3 +346,9 @@ span .tag {
 .recipe-details{ 
   overflow-y: auto;
 }
+
+
+
+
+
+
