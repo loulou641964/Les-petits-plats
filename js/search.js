@@ -26,5 +26,5 @@ export const initializeSearch = (filterRecipes, displayRecipes, updateRecipeCoun
         }
     });
 
-     searchIcon.addEventListener("click", filterRecipes);
+    searchIcon.addEventListener("click", filterRecipes);
 };
