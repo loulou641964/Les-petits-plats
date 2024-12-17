@@ -19,10 +19,11 @@ export const initializeSearch = (filterRecipes, displayRecipes, updateRecipeCoun
         const searchTerm = event.target.value.trim();
         if (searchTerm.length >= 3) {
             filterRecipes();
-        } else if (searchTerm.length === 0) {
+        } else  {
             displayRecipes(recipes);
             updateRecipeCount(recipes.length);
             updateFilterLists(recipes);
+            filterRecipes()
         }
     });
 

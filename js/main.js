@@ -82,7 +82,7 @@ const filterRecipes = () => {
 };
 
 // (gestion des chevrons, sélection des tags, etc.)
-const handleChevronToggle = (showChevron, hideChevron, listContainer) => {
+const handleChevronToggle = (showChevron, hideChevron, listContainer, input) => {
     showChevron.addEventListener("click", () => {
         listContainer.style.display = "block";
         showChevron.style.display = "none";
@@ -94,6 +94,18 @@ const handleChevronToggle = (showChevron, hideChevron, listContainer) => {
         hideChevron.style.display = "none";
         showChevron.style.display = "inline-block";
     });
+    input?.addEventListener("focus",()=>{ 
+        listContainer.style.display = "block";
+        showChevron.style.display = "none";
+        hideChevron.style.display = "inline-block";
+        
+    })
+    input?.addEventListener("focusout",()=>{ 
+        listContainer.style.display = "none";
+        hideChevron.style.display = "none";
+        showChevron.style.display = "inline-block";
+        
+    })
 };
 
 const showIngredientsChevron = document.querySelector("#show-ingredients");
@@ -106,7 +118,8 @@ handleChevronToggle(showAppliancesChevron, hideAppliancesChevron, appliancesList
 
 const showUstensilsChevron = document.querySelector("#show-ustensiles");
 const hideUstensilsChevron = document.querySelector("#hide-ustensiles");
-handleChevronToggle(showUstensilsChevron, hideUstensilsChevron, ustensilsListContainer);
+const inputUstensils= document.querySelector("#ustensiles");
+handleChevronToggle(showUstensilsChevron, hideUstensilsChevron, ustensilsListContainer, inputUstensils);
 
 const selectedTagContainer = document.querySelector("#selected-tags");
 
