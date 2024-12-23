@@ -88,14 +88,14 @@ const handleChevronToggle = (showChevron, hideChevron, listContainer, input, ite
       listContainer.style.display = "block";
       showChevron.style.display = "none";
       hideChevron.style.display = "inline-block";
-      showChevron.closest('.filter-item').classList.add('open'); // Ajout de cette ligne
+      showChevron.closest('.filter-item').classList.add('open'); 
     });
   
     hideChevron.addEventListener("click", () => {
       listContainer.style.display = "none";
       hideChevron.style.display = "none";
       showChevron.style.display = "inline-block";
-      hideChevron.closest('.filter-item').classList.remove('open'); // Ajout de cette ligne
+      hideChevron.closest('.filter-item').classList.remove('open'); 
     });
   
     if (input) {
@@ -103,7 +103,7 @@ const handleChevronToggle = (showChevron, hideChevron, listContainer, input, ite
         listContainer.style.display = "block";
         showChevron.style.display = "none";
         hideChevron.style.display = "inline-block";
-        input.closest('.filter-item').classList.add('open'); // Ajout de cette ligne
+        input.closest('.filter-item').classList.add('open'); 
       });
   
       input.addEventListener("blur", () => {
