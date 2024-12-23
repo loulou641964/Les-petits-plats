@@ -359,27 +359,32 @@ span .tag {
 .recipe-details{ 
   overflow-y: auto;
 }
-.mini-search-wrapper {
+.mini-search-container {
   position: relative;
-  margin: 10px;
   display: flex;
   align-items: center;
 }
 
-.imput.mini-search {
-  width: calc(100% - 30px);
-  padding: 5px 25px 5px 5px;
+.mini-search {
+  padding: 8px 40px 8px 10px; /* Ajustez le padding pour faire de la place pour l'icône et le bouton */
   border: 1px solid #ccc;
-  border-radius: 3px;
-  font-size: 14px;
-  height: 30px;
+  border-radius: 4px;
+  width: 100%;
 }
 
 .mini-search-icon {
   position: absolute;
-  right: 8px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #888;
-  pointer-events: none;
+  right: 40px; /* Ajustez selon la taille de votre champ */
+  pointer-events: none; /* Ne pas interférer avec les clics */
+}
+
+.clear-search {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  right: 10px; /* Ajustez selon la taille de votre champ */
+}
+.clear-search i {
+  color: #888; /* Couleur de l'icône de suppression */
 }
