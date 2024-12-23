@@ -4,11 +4,22 @@ import recipes from "./../data/recipes.js";
 
 export const mainSearch = (term) => {
     const lowerTerm = term.toLowerCase().trim();
-    return recipes.filter(({ name, description, ingredients }) => 
-        name.toLowerCase().startsWith(lowerTerm) ||
-        description.toLowerCase().includes(lowerTerm) ||
-        ingredients.some(({ ingredient }) => ingredient.toLowerCase().startsWith(lowerTerm))
-    );
+    const results = [];
+    for (let i = 0; i < recipes.length; i++) {
+        const recipe = recipes[i];
+        if (recipe.name.toLowerCase().startsWith(lowerTerm) ||
+            recipe.description.toLowerCase().includes(lowerTerm)) {
+            results.push(recipe);
+            continue;
+        }
+        for (let j = 0; j < recipe.ingredients.length; j++) {
+            if (recipe.ingredients[j].ingredient.toLowerCase().startsWith(lowerTerm)) {
+                results.push(recipe);
+                break;
+            }
+        }
+    }
+    return results;
 };
 
 export const initializeSearch = (filterRecipes, displayRecipes, updateRecipeCount, updateFilterLists) => {
@@ -19,13 +30,13 @@ export const initializeSearch = (filterRecipes, displayRecipes, updateRecipeCoun
         const searchTerm = event.target.value.trim();
         if (searchTerm.length >= 3) {
             filterRecipes();
-        } else  {
+        } else {
             displayRecipes(recipes);
             updateRecipeCount(recipes.length);
             updateFilterLists(recipes);
-            filterRecipes()
+            filterRecipes();
         }
     });
 
-     searchIcon.addEventListener("click", filterRecipes);
+    searchIcon.addEventListener("click", filterRecipes);
 };
