@@ -1,5 +1,3 @@
-// main.js
-
 // Importations nécessaires
 import { getAppliancesFromRecipes, getIngredientsFromRecipes, getUstensilsFromRecipes, fillListWithArray } from "./filters.js";
 import recipes from "./../data/recipes.js";
@@ -52,27 +50,19 @@ const updateFilterLists = (filteredRecipes) => {
 
 const filterRecipes = () => {
     const searchInput = document.querySelector(".search-input");
-    const searchTerm = searchInput.value.trim();
-
+    const searchTerm = searchInput.value.trim().toLowerCase();
     let filteredRecipes = searchTerm.length >= 3 ? mainSearch(searchTerm) : recipes;
 
     filteredRecipes = filteredRecipes.filter(recipe => {
         const hasIngredients = selectedIngredients.every(ingredient =>
-            recipe.ingredients.some(item =>
-                item.ingredient.toLowerCase() === ingredient.toLowerCase()
-            )
+            recipe.ingredients.some(item => item.ingredient.toLowerCase().includes(ingredient.toLowerCase()))
         );
-        
         const hasAppliances = selectedAppliances.every(appliance =>
-            recipe.appliance.toLowerCase() === appliance.toLowerCase()
+            recipe.appliance.toLowerCase().includes(appliance.toLowerCase())
         );
-        
         const hasUstensils = selectedUstensils.every(ustensil =>
-            recipe.ustensils.some(item =>
-                item.toLowerCase() === ustensil.toLowerCase()
-            )
+            recipe.ustensils.some(item => item.toLowerCase().includes(ustensil.toLowerCase()))
         );
-
         return hasIngredients && hasAppliances && hasUstensils;
     });
 
@@ -81,48 +71,35 @@ const filterRecipes = () => {
     updateFilterLists(filteredRecipes);
 };
 
-  
-
 const handleChevronToggle = (showChevron, hideChevron, listContainer, input, items) => {
     showChevron.addEventListener("click", () => {
-      listContainer.style.display = "block";
-      showChevron.style.display = "none";
-      hideChevron.style.display = "inline-block";
-      showChevron.closest('.filter-item').classList.add('open'); 
-    });
-  
-    hideChevron.addEventListener("click", () => {
-      listContainer.style.display = "none";
-      hideChevron.style.display = "none";
-      showChevron.style.display = "inline-block";
-      hideChevron.closest('.filter-item').classList.remove('open'); 
-    });
-  
-    if (input) {
-      input.addEventListener("focus", () => {
         listContainer.style.display = "block";
         showChevron.style.display = "none";
         hideChevron.style.display = "inline-block";
-        input.closest('.filter-item').classList.add('open'); 
-      });
-  
-      input.addEventListener("blur", () => {
-        setTimeout(() => {
-          listContainer.style.display = "none";
-          hideChevron.style.display = "none";
-          showChevron.style.display = "inline-block";
-          input.closest('.filter-item').classList.remove('open'); // Ajout de cette ligne
-        }, 200);
+        showChevron.closest('.filter-item').classList.add('open');
     });
-      
+
+    hideChevron.addEventListener("click", () => {
+        listContainer.style.display = "none";
+        hideChevron.style.display = "none";
+        showChevron.style.display = "inline-block";
+        hideChevron.closest('.filter-item').classList.remove('open');
+        input.value = ''; // Réinitialiser l'input
+        
+    });
+    input?.addEventListener("focus",()=>{ 
+        listContainer.style.display = "block";
+        showChevron.style.display = "none";
+        hideChevron.style.display = "inline-block";
+        showChevron.closest('.filter-item').classList.add('open');
+        
+    })
     
-  
-  
+
+    if (input) {
         input.addEventListener("input", () => {
             const searchTerm = input.value.toLowerCase().trim();
-            const filteredItems = items.filter(item => 
-                item.toLowerCase().includes(searchTerm)
-            );
+            const filteredItems = items.filter(item => item.toLowerCase().includes(searchTerm));
             fillListWithArray(listContainer, filteredItems);
         });
     }
@@ -147,54 +124,58 @@ const selectedTagContainer = document.querySelector("#selected-tags");
 
 const updateTags = () => {
     selectedTagContainer.innerHTML = '';
-    
-    const createTag = (tag, selectedArray, container) => {
+    const createTag = (tag) => {
         const span = document.createElement("span");
         span.textContent = tag;
         span.classList.add("tag");
-
+        
         const closeButton = document.createElement("button");
         closeButton.textContent = "X";
         closeButton.classList.add("close-tag");
-
+        
         closeButton.addEventListener("click", () => {
-            selectedArray.splice(selectedArray.indexOf(tag), 1);
+            if (selectedIngredients.includes(tag)) {
+                selectedIngredients.splice(selectedIngredients.indexOf(tag), 1);
+            } else if (selectedAppliances.includes(tag)) {
+                selectedAppliances.splice(selectedAppliances.indexOf(tag), 1);
+            } else if (selectedUstensils.includes(tag)) {
+                selectedUstensils.splice(selectedUstensils.indexOf(tag), 1);
+            }
             updateTags();
             filterRecipes();
         });
-
+        
         span.appendChild(closeButton);
-        container.appendChild(span);
+        selectedTagContainer.appendChild(span);
     };
 
-    selectedIngredients.forEach(tag => createTag(tag, selectedIngredients, selectedTagContainer));
-    selectedAppliances.forEach(tag => createTag(tag, selectedAppliances, selectedTagContainer));
-    selectedUstensils.forEach(tag => createTag(tag, selectedUstensils, selectedTagContainer));
+    selectedIngredients.forEach(tag => createTag(tag));
+    selectedAppliances.forEach(tag => createTag(tag));
+    selectedUstensils.forEach(tag => createTag(tag));
 };
 
-const handleSelection = (listContainer, selectedArray, showChevron, hideChevron) => {
-    listContainer.addEventListener("click", e => {
-        if (e.target.tagName === "LI") {
-            const value = e.target.textContent.trim();
-            if (!selectedArray.includes(value)) {
-                selectedArray.push(value);
-                updateTags();
-                filterRecipes();
-                listContainer.style.display = "none";
-                hideChevron.style.display = "none";
-                showChevron.style.display = "inline-block";
-            }
-        }
-    });
-};
+const handleSelectionClickEventListener= (listContainer ,selectedArray ,showChevron ,hideChevron) =>{
+  listContainer.addEventListener("click", e =>{
+      if (e.target.tagName === "LI") {
+          const value= e.target.textContent.trim();
+          if (!selectedArray.includes(value)) {
+              selectedArray.push(value);
+              updateTags();
+              filterRecipes();
+              listContainer.style.display="none"; 
+              hideChevron.style.display="none"; 
+              showChevron.style.display="inline-block"; 
+          }
+      }
+  });
+}
 
-
-handleSelection(ingredientsListContainer, selectedIngredients, showIngredientsChevron, hideIngredientsChevron);
-handleSelection(appliancesListContainer, selectedAppliances, showAppliancesChevron, hideAppliancesChevron);
-handleSelection(ustensilsListContainer, selectedUstensils, showUstensilsChevron, hideUstensilsChevron);
+handleSelectionClickEventListener(ingredientsListContainer ,selectedIngredients ,showIngredientsChevron ,hideIngredientsChevron);
+handleSelectionClickEventListener(appliancesListContainer ,selectedAppliances ,showAppliancesChevron ,hideAppliancesChevron);
+handleSelectionClickEventListener(ustensilsListContainer ,selectedUstensils ,showUstensilsChevron ,hideUstensilsChevron);
 
 // Initialisation de la recherche
-initializeSearch(filterRecipes, displayRecipes, updateRecipeCount, updateFilterLists);
+initializeSearch(filterRecipes);
 
 // Initialisation de l'affichage
 displayRecipes(recipes);
