@@ -46,9 +46,13 @@ function fillListWithArray(list, data) {
   });
 }
 
+
+
+
 export {
   getUstensilsFromRecipes,
   getAppliancesFromRecipes,
   getIngredientsFromRecipes,
   fillListWithArray,
+  
 };
