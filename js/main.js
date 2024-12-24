@@ -1,7 +1,10 @@
+// main.js
+
 // Importations nécessaires
 import { getAppliancesFromRecipes, getIngredientsFromRecipes, getUstensilsFromRecipes, fillListWithArray } from "./filters.js";
 import recipes from "./../data/recipes.js";
 import recipeTemplate from "./templates/recipe.js";
+import { mainSearch, initializeSearch } from "./search.js";
 import { mainSearch, initializeSearch } from "./search.js";
 
 // Sélections initialisées
