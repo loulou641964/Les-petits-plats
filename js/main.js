@@ -175,7 +175,7 @@ handleSelectionClickEventListener(appliancesListContainer ,selectedAppliances ,s
 handleSelectionClickEventListener(ustensilsListContainer ,selectedUstensils ,showUstensilsChevron ,hideUstensilsChevron);
 
 // Initialisation de la recherche
-initializeSearch(filterRecipes);
+initializeSearch(filterRecipes,displayRecipes,updateRecipeCount,updateFilterLists);
 
 // Initialisation de l'affichage
 displayRecipes(recipes);
