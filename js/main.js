@@ -1,10 +1,7 @@
-// main.js
-
 // Importations nécessaires
 import { getAppliancesFromRecipes, getIngredientsFromRecipes, getUstensilsFromRecipes, fillListWithArray } from "./filters.js";
 import recipes from "./../data/recipes.js";
 import recipeTemplate from "./templates/recipe.js";
-import { mainSearch, initializeSearch } from "./search.js";
 import { mainSearch, initializeSearch } from "./search.js";
 
 // Sélections initialisées
@@ -178,7 +175,7 @@ handleSelectionClickEventListener(appliancesListContainer ,selectedAppliances ,s
 handleSelectionClickEventListener(ustensilsListContainer ,selectedUstensils ,showUstensilsChevron ,hideUstensilsChevron);
 
 // Initialisation de la recherche
-initializeSearch(filterRecipes);
+initializeSearch(filterRecipes,displayRecipes,updateRecipeCount,updateFilterLists);
 
 // Initialisation de l'affichage
 displayRecipes(recipes);
