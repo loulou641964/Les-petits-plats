@@ -55,7 +55,7 @@
           <mxGeometry x="260" y="390" width="100" height="110" as="geometry" />
         </mxCell>
         <mxCell id="bN5cD96EImq01qIfvzFv-8" value="L&#39;utilisateur ajoute un caractère à la recherche principale" style="rhombus;whiteSpace=wrap;html=1;fontSize=9;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
-          <mxGeometry x="530" y="360" width="130" height="140" as="geometry" />
+          <mxGeometry x="525" y="360" width="130" height="140" as="geometry" />
         </mxCell>
         <mxCell id="bN5cD96EImq01qIfvzFv-9" value="L&#39;utilisateur supprime un caractère à la recherche principale" style="rhombus;whiteSpace=wrap;html=1;fontSize=9;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
           <mxGeometry x="690" y="360" width="130" height="140" as="geometry" />
@@ -73,7 +73,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="CCzCYxd0K1bkK0iQKvBv-1" value="le champ de recherche fait 3 caractères ou plus" style="rhombus;whiteSpace=wrap;html=1;align=center;fontSize=9;fillColor=#d5e8d4;strokeColor=#82b366;" parent="1" vertex="1">
-          <mxGeometry x="530" y="520" width="130" height="120" as="geometry" />
+          <mxGeometry x="520" y="520" width="140" height="120" as="geometry" />
         </mxCell>
         <mxCell id="CCzCYxd0K1bkK0iQKvBv-2" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="CCzCYxd0K1bkK0iQKvBv-1" target="CCzCYxd0K1bkK0iQKvBv-7" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -97,7 +97,7 @@
           <mxGeometry x="480" y="600" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="CCzCYxd0K1bkK0iQKvBv-7" value="rechercher la chaine de caractères dans le titre" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-          <mxGeometry x="535" y="690" width="120" height="60" as="geometry" />
+          <mxGeometry x="530" y="690" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="CCzCYxd0K1bkK0iQKvBv-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="bN5cD96EImq01qIfvzFv-8" target="CCzCYxd0K1bkK0iQKvBv-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
