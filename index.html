@@ -1,22 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/png" href="assets/favicon.png" />
-    <link
-      href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap"
-      rel="stylesheet"
-    />
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <script
-      src="https://kit.fontawesome.com/0b6d538c32.js"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0b6d538c32.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
@@ -25,18 +16,15 @@
 
   <body>
     <header>
-      <a href="#"
-        ><img src="./assets/logo/Logo.svg" alt="Les Petits Plats"
-      /></a>
+      <a href="#">
+        <img src="./assets/logo/Logo.svg" alt="Les Petits Plats">
+      </a>
       <div>
-        <img
-          src="assets/photo/lampos-aritonang-24gR_9lCdes-unsplash 1.jpg"
-          alt=""
-        />
+        <img src="assets/photo/lampos-aritonang-24gR_9lCdes-unsplash1.jpg" alt="Image de plat">
       </div>
       <p class="hero-text">
-        CHERCHEZ PARMI PLUS DE 1500 RECETTES,<br />DU QUOTIDIEN SIMPLES ET
-        DÉLICIEUSES
+        CHERCHEZ PARMI PLUS DE 1500 RECETTES,<br>
+        DU QUOTIDIEN SIMPLES ET DÉLICIEUSES
       </p>
       <!--  barre de Recherche -->
       <form class="search-bar">
@@ -44,10 +32,11 @@
           type="text"
           class="search-input"
           placeholder="Rechercher une recette, un ingrédient, ..."
-        />
-        <img src="./assets/icon/Loop CTA.svg" alt="Loupe" class="search-icon" />
+        >
+        <img src="./assets/icon/LoopCTA.svg" alt="Loupe" class="search-icon">
       </form>
     </header>
+
     <main>
       <section class="tag-list">
         <!-- affichage des tags -->
@@ -55,56 +44,44 @@
         <div class="tag-appareil"></div>
         <div class="tag-ustensile"></div>
       </section>
+
       <section class="filter-menu">
         <div class="filter-item">
           <div class="ingredients-btn-container">
-            <input type="text" id="ingredients" placeholder="Ingrédients" />
-            <i
-              class="fa-solid fa-chevron-up"
-              id="hide-ingredients"
-              style="display: none"
-            ></i>
+            <input type="text" id="ingredients" placeholder="Ingrédients">
+            <i class="fa-solid fa-chevron-up" id="hide-ingredients" style="display: none"></i>
             <i class="fa-solid fa-chevron-down" id="show-ingredients"></i>
           </div>
           <ul id="ingredients-liste" style="display: none"></ul>
-          
         </div>
 
         <div class="filter-item">
           <div class="appareils-btn-container">
-            <input type="text" id="appareils" placeholder="Appareils" />
-            <i
-              class="fa-solid fa-chevron-up"
-              id="hide-Appareils"
-              style="display: none"
-            ></i>
+            <input type="text" id="appareils" placeholder="Appareils">
+            <i class="fa-solid fa-chevron-up" id="hide-Appareils" style="display: none"></i>
             <i class="fa-solid fa-chevron-down" id="show-Appareils"></i>
           </div>
           <ul id="appareils-liste" style="display: none"></ul>
-         
         </div>
 
         <div class="filter-item">
           <div class="ustensiles-btn-container">
-            <input type="text" id="ustensiles" placeholder="Ustensiles" />
-            <i
-              class="fa-solid fa-chevron-up"
-              id="hide-ustensiles"
-              style="display: none"
-            ></i>
+            <input type="text" id="ustensiles" placeholder="Ustensiles">
+            <i class="fa-solid fa-chevron-up" id="hide-ustensiles" style="display: none"></i>
             <i class="fa-solid fa-chevron-down" id="show-ustensiles"></i>
           </div>
           <ul id="ustensiles-liste" style="display: none"></ul>
-          
         </div>
         <div class="tags-container" id="selected-tags"></div>
       </section>
+
       <p class="filter-text">1500 recettes</p>
 
-      <section class="container-recipes"></section>
+      <section class="container-recipes">
+        <h2 class="visually-hidden">Liste des recettes</h2>
+      </section>
     </main>
+
     <script src="./js/main.js" type="module"></script>
-    
-  
   </body>
 </html>
