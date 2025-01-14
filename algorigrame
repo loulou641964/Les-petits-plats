@@ -96,8 +96,8 @@
         <mxCell id="CCzCYxd0K1bkK0iQKvBv-6" value="oui" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="595" y="640" width="60" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="CCzCYxd0K1bkK0iQKvBv-7" value="rechercher la chaine de caractères dans le titre" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
-          <mxGeometry x="530" y="690" width="120" height="60" as="geometry" />
+        <mxCell id="CCzCYxd0K1bkK0iQKvBv-7" value="Rechercher la chaine de caractères dans le titre, les ingrédients ou la description." style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" parent="1" vertex="1">
+          <mxGeometry x="530" y="690" width="120" height="80" as="geometry" />
         </mxCell>
         <mxCell id="CCzCYxd0K1bkK0iQKvBv-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="bN5cD96EImq01qIfvzFv-8" target="CCzCYxd0K1bkK0iQKvBv-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
